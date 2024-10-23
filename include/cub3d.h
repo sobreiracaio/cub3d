@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 19:00:35 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:26:57 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,6 @@ typedef struct s_game
 	char		*file;
 	t_map		*map;
 	t_player	*player;
-	void		*mlx;
-	void		*win;
-	t_render	render[4];
-	int			key;
-	t_render	*texture;
-	t_image		 img;
-	t_img_info	img_info;
-	t_rays		ray;
 }	t_game;
 
 int		check_and_parse(t_game *game, char **path);
@@ -169,19 +161,7 @@ char	getchr(const char *s, int c);
 void		free_structs(t_game *game);
 void	free_arr(char **arr);
 int		ft_print_err(char *err);
-t_render	set_images(t_game *cub3d, char *texture);
-int		make_game(t_game *cub3d);
-void	movements(t_game *game);
-void	generate_image(t_game *cub3d);
-void	texture_calc(t_game *game);
-void	ft_color(t_game *game, int i, char flag);
-void	ft_textures(t_game *game, int i);
-void	ft_init_player_pos(t_game *game);
+void	player_direction(t_game *game);
 void	free_arr(char **arr);
-void	ft_raycast(t_game *game);
-void	ft_perror(char *msg, t_game *game);
-int		end_game(t_game *game);
-int		ft_keypress(int keycode, t_game *game);
-int		ft_keyrelease(int keycode, t_game *game);
 int		arr_len(char **arr);
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_game.c                                        :+:      :+:    :+:   */
+/*   player_direction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 17:30:18 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 15:09:18 by crocha-s         ###   ########.fr       */
+/*   Created: 2024/10/23 16:07:29 by crocha-s          #+#    #+#             */
+/*   Updated: 2024/10/23 16:27:19 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_init_player_pos(t_game *game)
+void	player_direction(t_game *game)
 {
 	int	dir;
 
@@ -28,14 +28,4 @@ void	ft_init_player_pos(t_game *game)
 	game->player->movement = (t_coord){0, 0};
 	game->player->plane.pos.x = -game->player->dir.y;
 	game->player->plane.pos.y = game->player->dir.x;
-	game->key = 0;
-}
-
-int	make_game(t_game *cub3d)
-{
-	if (cub3d->key)
-		movements(cub3d);
-	generate_image(cub3d);
-	ft_raycast(cub3d);
-	return (EXIT_SUCCESS);
 }
