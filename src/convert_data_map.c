@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/23 16:33:10 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:44:16 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	are_color_valid(t_game *game)
 			return (ft_print_err("Error: Ceiling color index is not valid."));
 		i++;
 	}
-	printf("i : %d\n", i);
 	if (i < 2)
 		return (ft_print_err("Error: Ceiling color is missing values."));
 	i = 0;
