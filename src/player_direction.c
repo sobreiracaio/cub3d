@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:07:29 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/23 16:27:19 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:36:45 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	player_direction(t_game *game)
 
 	dir = 1;
 	if (game->player->fov == 'N')
-		game->player->dir = (t_coord){0, -dir};
-	else if (game->player->fov == 'S')
 		game->player->dir = (t_coord){0, dir};
+	else if (game->player->fov == 'S')
+		game->player->dir = (t_coord){0, -dir};
 	else if (game->player->fov == 'W')
 		game->player->dir = (t_coord){-dir, 0};
 	else if (game->player->fov == 'E')
