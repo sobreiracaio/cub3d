@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 19:00:35 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:40:38 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define SPRITE_SIZE 64
-# define SPEED 20
-# define ROTATION_SPEED 20
+# define SPEED 0.025
+# define ROTATION_SPEED 0.5
 # define BUFFER_DISTANCE 0.1
 
 # define PI 3.14159265358
@@ -47,8 +47,6 @@
 # define WE 3
 # define F 	4
 # define C 	5
-
-# define SPEED 0.025
 
 typedef struct s_coord
 {

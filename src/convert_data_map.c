@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 17:19:48 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:40:01 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	are_color_valid(t_game *game)
 			return (ft_print_err("Error: Ceiling color index is not valid."));
 		i++;
 	}
-	if (i < 3)
+	if (i < 2)
 		return (ft_print_err("Error: Ceiling color is missing values."));
 	i = 0;
 	color2 = game->map->floor;
@@ -45,7 +45,7 @@ static int	are_color_valid(t_game *game)
 			return (ft_print_err("Error: Floor color index is not valid."));
 		i++;
 	}
-	if (i < 3)
+	if (i < 2)
 		return (ft_print_err("Error: Floor color is missing values."));
 	return (0);
 }
