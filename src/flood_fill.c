@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:19:04 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 14:33:02 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:32:01 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ static char	**create_sqd_map(int height, int max_width, char **map_line)
 		return (NULL);
 	while (i < height -1)
 	{
-		temp[i] = (char *)ft_calloc((max_width + 1), sizeof(char));
+		temp[i] = (char *)ft_calloc((max_width + 2), sizeof(char));
 		if (!temp[i])
 			return (NULL);
-		ft_memset(temp[i], '#', (max_width) * sizeof (char));
-		temp[i][max_width] = '\0';
+		ft_memset(temp[i], '#', (max_width + 2) * sizeof (char));
+		temp[i][max_width + 1] = '\0';
 		i++;
 	}
 	i = 0;
@@ -96,7 +96,7 @@ void	fill_map(t_game *game, char **squared_map, int height)
 		j = 0;
 		while (squared_map[i][j])
 		{
-			if (squared_map[i][j] == ' ')
+			if (squared_map[i][j] > 0 && squared_map[i][j] <= 32)
 				squared_map[i][j] = '#';
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:23:23 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/23 16:28:48 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:32:31 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void init_structs (t_game *game)
 {
 	*game = (t_game){0};
 	game->map = malloc(sizeof(t_map));
-	memset(game->map, 0, sizeof(t_map));
+	ft_memset(game->map, 0, sizeof(t_map));
 	game->player = (t_player *)malloc(sizeof(t_player));
-	memset(game->player, 0, sizeof(t_player));
+	ft_memset(game->player, 0, sizeof(t_player));
 	
 }
 
