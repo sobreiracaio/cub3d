@@ -1,76 +1,88 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/01 18:01:36 by crocha-s          #+#    #+#              #
-#    Updated: 2024/10/23 16:25:02 by crocha-s         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-# Nome do programa
+# ------------------------------ Colors ------------------------------
+BOLD_PURPLE	=	\033[1;35m
+BOLD_CYAN	=	\033[1;36m
+BOLD_GREEN	=	\033[1;32m
+BOLD_YELLOW	=	\033[1;33m
+NO_COLOR	=	\033[0m
+
+# ------------------------------ Message ------------------------------
+COMP_START	=	echo "\n $(BOLD_YELLOW)Make: $(NO_COLOR)Starting the compilation...\n"
+READY		=	echo "\n $(BOLD_GREEN)Ready$(NO_COLOR) : The program$(BOLD_CYAN) cub3d $(NO_COLOR)has been compiled!\n"
+CLEANED		=	echo "\n $(BOLD_PURPLE)Clean: $(NO_COLOR)Removed all the \".o\" files \n"
+FCLEANED	=	echo "\n $(BOLD_PURPLE)Fclean: $(NO_COLOR)Removed the executables \n"
+
+# ------------------------------ Variables ------------------------------
 NAME = cub
+NAME_BONUS = cub3d_bonus
+CC = cc
+FLAGS = -Wall -Wextra -Werror -g
+MAKE = make -C
+RM = rm -f
+DN = > /dev/null
 
-# Compilador e flags
-CC = gcc
-CFLAGS = -g #-Wall -Wextra -Werror
-
-# Diretórios
 SRC_DIR = src
 INCLUDE_DIR = include
 UTILS_DIR = utils
 LIBFT_DIR = lib/libft
 MLX_DIR = lib/mlx
 
-# Arquivos de origem (SRC)
-SRC_FILES = $(SRC_DIR)/main.c \
-			$(SRC_DIR)/check_and_parse.c \
-			$(SRC_DIR)/check_tex_path.c \
-			$(SRC_DIR)/parse_map_matrix.c \
-			$(SRC_DIR)/convert_data_map.c \
-			$(SRC_DIR)/flood_fill.c  \
-			$(SRC_DIR)/free.c \
-			$(SRC_DIR)/utils.c \
-			$(SRC_DIR)/player_direction.c \
-			
 
-UTILS_FILES = $(UTILS_DIR)/print_err.c \
-			  $(UTILS_DIR)/getchr.c
+LIBFT_PATH = libft
+LFLAGS = -L ${LIBFT_PATH} -lft
+MLXFLAG = -L ${MLX_PATH} -lmlx_Linux -lbsd -lXext -lX11 -lm
+MLX_PATH = minilibx-linux
+MLX_REPO = https://github.com/42Paris/minilibx-linux
 
-# Arquivos de bibliotecas
-LIBFT = $(LIBFT_DIR)/libft.a
-MLX = $(MLX_DIR)/libmlx.a  # Alterado para o arquivo correto da lib MLX
+SRC_DIRS = src utils
+SRC =	$(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
 
-# Todos os arquivos fontes
-ALL_SRC = $(SRC_FILES) $(UTILS_FILES)
+OBJ = ${SRC:.c=.o}
+#OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
-# Gerar os nomes dos arquivos .o a partir dos .c
-OBJ_FILES = $(ALL_SRC:.c=.o)
+.c.o:
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-# Instrução principal para compilar o projeto
-all: $(NAME)
+${NAME}: libmlx ${OBJ}
+		@${MAKE} ${LIBFT_PATH} $(DN)
+		@echo "\n $(BOLD_GREEN)Libft has been compiled!\n$(NO_COLOR)" 
+		@${CC} ${OBJ} ${LFLAGS} ${MLXFLAG} -o ${NAME}
+		@$(READY)
 
-# Regra de compilação do executável
-$(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(MLX_DIR) $(OBJ_FILES) $(LIBFT) -L$(MLX_DIR) -lmlx -L/usr/X11/lib -lX11 -lXext -lm -o $(NAME)
+${NAME_BONUS}: ${OBJ_BONUS}
+		@${MAKE} ${LIBFT_PATH} $(DN)
+		@echo "\n $(BOLD_GREEN)Libft has been compiled!\n$(NO_COLOR)" 
+		@${CC} ${OBJ} ${LFLAGS} -o ${NAME}
+		@$(READY)
 
-# Regra para compilar arquivos .c em .o
-%.o: %.c $(INCLUDE_DIR)/cub3d.h
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+all: ${NAME}
 
-# Limpeza dos arquivos objetos (.o)
+libmlx:
+	@$(COMP_START)
+	@if [ ! -d "$(MLX_PATH)" ]; then \
+		echo "$(BOLD_YELLOW)Cloning minilibx-linux repository...$(NO_COLOR)"; \
+		git clone $(MLX_REPO) $(MLX_PATH)$(DN); \
+	fi
+	@make -C $(MLX_PATH) $(DN)
+	@echo "\n $(BOLD_GREEN)MLX has been compiled!\n$(NO_COLOR)"
+
+bonus: $(OBJ_BONUS) $(NAME_BONUS)
+
 clean:
-	rm -f $(OBJ_FILES)
+	@${MAKE} ${LIBFT_PATH} clean $(DN)
+	@${MAKE} ${MLX_PATH} clean $(DN)
+	@${RM} ${OBJ}
+	@${RM} ${OBJ_BONUS}
+	@$(CLEANED)
 
-# Limpeza completa, removendo também o executável
 fclean: clean
-	rm -f $(NAME)
+	@${MAKE} ${LIBFT_PATH} fclean $(DN)
+	@${RM} ${NAME}
+	@$(FCLEANED)
 
-# Recompilar tudo
 re: fclean all
 
-# Dependências para garantir a correta compilação
-$(UTILS_DIR)/print_err.o: $(UTILS_DIR)/print_err.c $(INCLUDE_DIR)/cub3d.h
-$(SRC_DIR)/main2.o: $(SRC_DIR)/main2.c $(INCLUDE_DIR)/cub3d.h
+test1: ${NAME}
+	@bash ./test/test1.sh
+
+.PHONY: all clean fclean re test1 test2 leaks
