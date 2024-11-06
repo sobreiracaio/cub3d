@@ -18,41 +18,41 @@ void	ft_ray_intersections(t_game *game)
 	{
 		game->ray.map_mov.x = -1;
 		game->ray.intersection.x = (game->player->pos.x
-				- game->player->int_pos_x) * game->ray.delta.x;
+				- game->ray->map.x) * game->ray.delta.x;
 	}
 	else
 	{
 		game->ray.map_mov.x = 1;
-		game->ray.intersection.x = (game->player->int_pos_x + 1
+		game->ray.intersection.x = (game->ray->map.x + 1
 				- game->player->pos.x) * game->ray.delta.x;
 	}
 	if (game->ray.direction.y < 0)
 	{
 		game->ray.map_mov.y = -1;
 		game->ray.intersection.y = (game->player->pos.y
-				- game->player->int_pos_y) * game->ray.delta.y;
+				- game->ray->map.y) * game->ray.delta.y;
 	}
 	else
 	{
 		game->ray.map_mov.y = 1;
-		game->ray.intersection.y = (game->player->int_pos_y + 1
+		game->ray.intersection.y = (game->ray->map.y + 1
 				- game->player->pos.y) * game->ray.delta.y;
 	}
 }
 
-void	ft_cast_a_ray(t_game *game, int i)
+void	ft_cast_a_ray(t_game *game, int pixel)
 {
-	double	plane_var;
+	double	multiplier;
 
-	plane_var = 2 * i / (double)WIDTH - 1;
+	multiplier = 2 * pixel / (double)WIDTH - 1;
 	game->ray.direction.x = game->player->dir.x
-		+ game->player->plane.pos.x * plane_var;
+		+ game->player->plane.pos.x * multiplier;
 	game->ray.direction.y = game->player->dir.y
-		+ game->player->plane.pos.y * plane_var;
+		+ game->player->plane.pos.y * multiplier;
 	game->ray.delta.x = fabs(1 / game->ray.direction.x);
 	game->ray.delta.y = fabs(1 / game->ray.direction.y);
-	game->player->int_pos_x = (int)game->player->pos.x;
-	game->player->int_pos_y = (int)game->player->pos.y;
+	game->ray->map.x = (int)game->player->pos.x;
+	game->ray->map.y = (int)game->player->pos.y;
 	ft_ray_intersections(game);
 }
 
@@ -66,17 +66,17 @@ void	ft_dda(t_game *game)
 		if (game->ray.intersection.x < game->ray.intersection.y)
 		{
 			game->ray.intersection.x += game->ray.delta.x;
-			game->player->int_pos_x += game->ray.map_mov.x;
+			game->ray->map.x += game->ray.map_mov.x;
 			game->ray.hit_vertical = true;
 		}
 		else
 		{
 			game->ray.intersection.y += game->ray.delta.y;
-			game->player->int_pos_y += game->ray.map_mov.y;
+			game->ray->map.y += game->ray.map_mov.y;
 			game->ray.hit_vertical = false;
 		}
-		if (game->map->map_matrix[game->player->int_pos_y]
-			[game->player->int_pos_x] == '1')
+		if (game->map->map_matrix[game->ray->map.y]
+			[game->ray->map.x] == '1')
 			hit_flag = true;
 	}
 }
