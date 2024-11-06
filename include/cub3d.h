@@ -75,7 +75,7 @@ typedef struct s_plane
 
 typedef struct s_player
 {
-	char	fov; // field of view
+	char	fov;
 	t_coord	dir;
 	t_plane	plane;
 	t_coord movement;
@@ -87,8 +87,8 @@ typedef struct s_player
 	int		pitch;
 	t_coord	pos;
 	double		angle;
-	int			int_pos_x;
-	int			int_pos_y;
+//	int			int_pos_x;
+//	int			int_pos_y;
 }	t_player;
 
 typedef struct s_map
@@ -138,7 +138,8 @@ typedef struct s_rays
 	t_coord		direction;
 	t_coord		delta;
 	t_coord		intersection;
-	t_coord		map_mov;
+	t_coord		map_mov; //step
+	t_coord		map;
 	bool		hit_vertical;
 	double		perp_wall_dist;
 }	t_rays;
