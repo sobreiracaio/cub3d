@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/01 16:17:26 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/11/06 22:24:25 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define NBR_TEXTURES 4
 # define DIRECTIONS "NO,SO,EA,WE"
 # define COLOR_PLACE "F ,C "
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 800
 # define SPRITE_SIZE 64
-# define SPEED 0.025
+# define SPEED 0.05
 # define ROTATION_SPEED 2
 # define BUFFER_DISTANCE 0.1
 
@@ -79,16 +79,14 @@ typedef struct s_player
 	t_coord	dir;
 	t_plane	plane;
 	t_coord movement;
+	t_coord	pos;
 	double	move_speed;
 	double	rot_speed;
 	int		img_index;
 	double	hit_dist;
 	double	hit_x;
 	int		pitch;
-	t_coord	pos;
 	double		angle;
-//	int			int_pos_x;
-//	int			int_pos_y;
 }	t_player;
 
 typedef struct s_map

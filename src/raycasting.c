@@ -6,53 +6,64 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:20:18 by lumarque          #+#    #+#             */
-/*   Updated: 2024/11/01 16:20:22 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/11/08 01:42:46 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+//Set direction and calculate distance intersection
 void	ft_ray_intersections(t_game *game)
 {
 	if (game->ray.direction.x < 0)
 	{
 		game->ray.map_mov.x = -1;
 		game->ray.intersection.x = (game->player->pos.x
-				- game->ray->map.x) * game->ray.delta.x;
+				- game->ray.map.x) * game->ray.delta.x;
 	}
 	else
 	{
 		game->ray.map_mov.x = 1;
-		game->ray.intersection.x = (game->ray->map.x + 1
+		game->ray.intersection.x = (game->ray.map.x + 1
 				- game->player->pos.x) * game->ray.delta.x;
 	}
 	if (game->ray.direction.y < 0)
 	{
 		game->ray.map_mov.y = -1;
 		game->ray.intersection.y = (game->player->pos.y
-				- game->ray->map.y) * game->ray.delta.y;
+				- game->ray.map.y) * game->ray.delta.y;
 	}
 	else
 	{
 		game->ray.map_mov.y = 1;
-		game->ray.intersection.y = (game->ray->map.y + 1
+		game->ray.intersection.y = (game->ray.map.y + 1
 				- game->player->pos.y) * game->ray.delta.y;
 	}
 }
 
-void	ft_cast_a_ray(t_game *game, int pixel)
+//Calculate multiplier of pixel plane, ray direction and delta distance.
+void	ft_ray_setup(t_game *game, int pixel)
 {
 	double	multiplier;
 
 	multiplier = 2 * pixel / (double)WIDTH - 1;
+
 	game->ray.direction.x = game->player->dir.x
 		+ game->player->plane.pos.x * multiplier;
+	if (game->ray.direction.x == 0)
+		game->ray.delta.x = 1e30;
+	else
+		game->ray.delta.x = fabs(1 / game->ray.direction.x);
+		
 	game->ray.direction.y = game->player->dir.y
 		+ game->player->plane.pos.y * multiplier;
-	game->ray.delta.x = fabs(1 / game->ray.direction.x);
-	game->ray.delta.y = fabs(1 / game->ray.direction.y);
-	game->ray->map.x = (int)game->player->pos.x;
-	game->ray->map.y = (int)game->player->pos.y;
+	if (game->ray.direction.y == 0)
+		game->ray.delta.y = 1e30;
+	else
+		game->ray.delta.y = fabs(1 / game->ray.direction.y);
+		
+	game->ray.map.x = (int)game->player->pos.x;
+	game->ray.map.y = (int)game->player->pos.y;
 	ft_ray_intersections(game);
 }
 
@@ -66,17 +77,17 @@ void	ft_dda(t_game *game)
 		if (game->ray.intersection.x < game->ray.intersection.y)
 		{
 			game->ray.intersection.x += game->ray.delta.x;
-			game->ray->map.x += game->ray.map_mov.x;
+			game->ray.map.x += game->ray.map_mov.x;
 			game->ray.hit_vertical = true;
 		}
 		else
 		{
 			game->ray.intersection.y += game->ray.delta.y;
-			game->ray->map.y += game->ray.map_mov.y;
+			game->ray.map.y += game->ray.map_mov.y;
 			game->ray.hit_vertical = false;
 		}
-		if (game->map->map_matrix[game->ray->map.y]
-			[game->ray->map.x] == '1')
+		if (game->map->map_matrix[(int)game->ray.map.y]
+			[(int)game->ray.map.x] == '1')
 			hit_flag = true;
 	}
 }
@@ -105,21 +116,20 @@ void	ft_distance_to_the_wall(t_game *game)
 
 void	ft_raycast(t_game *game)
 {
-	int	i;
+	int	pixel;
 
-	i = -1;
+	pixel = -1;
 	game->ray.hit_vertical = false;
-	while (++i <= ((int)WIDTH - 1))
+	while (++pixel <= ((int)WIDTH - 1))
 	{
-		ft_cast_a_ray(game, i);
+		ft_ray_setup(game, pixel);
 		ft_dda(game);
 		ft_distance_to_the_wall(game);
 		texture_calc(game);
-		ft_color(game, i, 'c');
-		ft_textures(game, i);
-		ft_color(game, i, 'f');
+		ft_color(game, pixel, 'c');
+		ft_textures(game, pixel);
+		ft_color(game, pixel, 'f');
 	}
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img_ptr, 0, 0);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 }
