@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/14 00:35:09 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/11/14 00:59:25 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define SPRITE_SIZE 64
-# define SPEED 0.11
+# define SPEED 0.09
 # define ROTATION_SPEED 3
 # define BUFFER_DISTANCE 0.1
 
