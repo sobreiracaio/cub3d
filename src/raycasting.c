@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:20:18 by lumarque          #+#    #+#             */
-/*   Updated: 2024/11/08 01:42:46 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:04:49 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_ray_intersections(t_game *game)
 	}
 }
 
-//Calculate multiplier of pixel plane, ray direction and delta distance.
+//Calculate multiplier of pixel plane, and set map pos and delta distance.
 void	ft_ray_setup(t_game *game, int pixel)
 {
 	double	multiplier;

@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/06 22:24:25 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/11/14 00:35:09 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define NBR_TEXTURES 4
 # define DIRECTIONS "NO,SO,EA,WE"
 # define COLOR_PLACE "F ,C "
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 800
+# define HEIGHT 600
 # define SPRITE_SIZE 64
-# define SPEED 0.05
-# define ROTATION_SPEED 2
+# define SPEED 0.11
+# define ROTATION_SPEED 3
 # define BUFFER_DISTANCE 0.1
 
 # define PI 3.14159265358

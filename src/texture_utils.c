@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:05:07 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/19 21:54:20 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:50:24 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	texture_calc(t_game *game)
 	if (ray->hit_vertical == false)
 	{
 		if (ray->direction.y > 0)
-			game->texture->index = NO;
-		else
 			game->texture->index = SO;
+		else
+			game->texture->index = NO;
 	}
 	else if (ray->hit_vertical == true)
 	{

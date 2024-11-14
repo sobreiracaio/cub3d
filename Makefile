@@ -15,7 +15,7 @@ FCLEANED	=	echo "\n $(BOLD_PURPLE)Fclean: $(NO_COLOR)Removed the executables \n"
 # ------------------------------ Variables ------------------------------
 NAME = cub
 NAME_BONUS = cub3d_bonus
-CC = cc
+CC = gcc
 FLAGS = -Wall -Wextra -Werror -g
 MAKE = make -C
 RM = rm -f
