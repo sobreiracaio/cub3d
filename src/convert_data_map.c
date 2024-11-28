@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 22:02:28 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:10:46 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ static int check_duplicates(char **map_arr)
 		free(trimmed);
 		i++;
 	}
-	if (path_counter > 4 || color_counter > 2)
-		return (ft_print_err("Error: Duplicated paths or colors detected."));
+	if (path_counter != 4 || color_counter != 2)
+		return (ft_print_err("Error: Missing or extra paths or colors detected."));
 	
 }
 int	convert_data_map(t_game *game, char *temp_raw_map)
