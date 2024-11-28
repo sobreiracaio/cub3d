@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:24:49 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 17:27:40 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:18:34 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static void	set_textures(t_game *game, char *temp, char *direction)
 		free(temp);
 		return;
 	}
-	else if (!ft_strncmp(direction, "SO", 2))
+	if (!ft_strncmp(direction, "SO", 2))
 	{
 		game->map->so_texture = ft_strdup(temp);
 		free(temp);
 		return;
 	}
-	else if (!ft_strncmp(direction, "WE", 2))
+	if (!ft_strncmp(direction, "WE", 2))
 	{
 		game->map->we_texture = ft_strdup(temp);
 		free(temp);
 		return;
 	}
-	else if (!ft_strncmp(direction, "EA", 2))
+	if (!ft_strncmp(direction, "EA", 2))
 	{
 		game->map->ea_texture = ft_strdup(temp);
 		free(temp);
@@ -83,20 +83,19 @@ int	check_tex_path(t_game *game, char **path)
 	i = 0;
 	while (path[i])
 	{
-		j = 0;
-		while (directions[j])// && j < 4)
-		{
-			temp = ft_strtrim(path[i], " ");
+		j = -1;
+		temp = ft_strtrim(path[i], " \a\b\t\v\f\r");
+		while (directions[++j])
 			if (!ft_strncmp(temp, directions[j], 2))
 			{
 				if (check_open(game, temp, directions[j]) != 0)
 					return (free_all(temp, directions));
 			}
-			free(temp);
-			j++;
-		}
+	
+		free(temp);
 		i++;
 	}
+	
 	free_arr(directions);
 	return (0);
 }
