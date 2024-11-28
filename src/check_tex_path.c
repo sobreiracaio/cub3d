@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:24:49 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 17:23:57 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:27:40 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_tex_path(t_game *game, char **path)
 	while (path[i])
 	{
 		j = 0;
-		while (directions[j] && j < 4)
+		while (directions[j])// && j < 4)
 		{
 			temp = ft_strtrim(path[i], " ");
 			if (!ft_strncmp(temp, directions[j], 2))
