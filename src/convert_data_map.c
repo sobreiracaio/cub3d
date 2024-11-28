@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/29 16:44:16 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:27:24 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ static int	are_color_valid(t_game *game)
 	color = game->map->ceiling;
 	while (color[i] && i < 3)
 	{
-		if (color[i] > 255)
+		if (color[i] > 255 || color[i] < 0)
 			return (ft_print_err("Error: Ceiling color index is not valid."));
 		i++;
 	}
-	if (i < 2)
+	if (i <= 2)
 		return (ft_print_err("Error: Ceiling color is missing values."));
 	i = 0;
 	color2 = game->map->floor;
-	while (color[i] && i < 3)
+	while (color2[i] && i < 3)
 	{
-		if (color2[i] > 255)
+		if (color2[i] > 255 || color2[i] < 0)
 			return (ft_print_err("Error: Floor color index is not valid."));
 		i++;
 	}
-	if (i < 2)
+	if (i <= 2)
 		return (ft_print_err("Error: Floor color is missing values."));
 	return (0);
 }
@@ -58,7 +58,7 @@ static void	read_fc_color(t_game *game, char *line)
 	i = -1;
 	if (!ft_strncmp(line, "F ", 1))
 	{
-		temp = ft_split(line, ',');
+		temp = ft_split(line + 1, ',');
 		while (temp[++i])
 			game->map->floor[i] = ft_atoi(temp[i]);
 		free_arr(temp);

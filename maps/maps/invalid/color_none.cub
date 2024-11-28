@@ -1,7 +1,7 @@
-NO ./textures/north_wall.xpm
-SO ./textures/south_wall.xpm
-WE ./textures/west_wall.xpm
-EA ./textures/east_wall.xpm
+NO ./maps/textures/north_wall.xpm
+SO ./maps/textures/south_wall.xpm
+WE ./maps/textures/west_wall.xpm
+EA ./maps/textures/east_wall.xpm
 
 11111
 10001
