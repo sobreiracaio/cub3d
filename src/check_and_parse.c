@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:06:26 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/20 17:17:20 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 19:12:53 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,11 @@ int	check_and_parse(t_game *game, char **path)
 		return (ft_print_err("Error: File is not a .cub format."));
 	game->file = *path;
 	temp_raw_map = read_map_file(path);
-	if (temp_raw_map == NULL)
-		return (1);
+	if (temp_raw_map == NULL || temp_raw_map[0] == '\0')
+	{
+		free(temp_raw_map);
+		return (ft_print_err("Error: Map is empty."));
+	}
 	if (convert_data_map(game, temp_raw_map) != 0)
 	{
 		free(temp_raw_map);

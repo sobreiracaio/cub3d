@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 18:34:08 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:36:41 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static void	read_fc_color(t_game *game, char *line)
 		while (temp[++i])
 			game->map->floor[i] = ft_atoi(temp[i]);
 		free_arr(temp);
+		game->map->f_color = rgb_to_hex(game->map->floor);
 	}
-	game->map->f_color = rgb_to_hex(game->map->floor);
 	i = -1;
 	if (!ft_strncmp(trimmed, "C ", 1))
 	{
@@ -73,9 +73,9 @@ static void	read_fc_color(t_game *game, char *line)
 		while (temp[++i])
 			game->map->ceiling[i] = ft_atoi(temp[i]);
 		free_arr(temp);
+		game->map->c_color = rgb_to_hex(game->map->ceiling);
 	}
 	free(trimmed);
-	game->map->c_color = rgb_to_hex(game->map->ceiling);
 }
 
 static int check_duplicates(char **map_arr)
