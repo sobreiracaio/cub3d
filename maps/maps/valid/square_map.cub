@@ -1,12 +1,12 @@
-   WE                            ./textures/east_wall.xpm
-NO      ./textures/east_wall.xpm
+   WE                            maps/textures/we_texture.xpm
+NO      maps/textures/no_texture.xpm
 
 
-SO ./textures/east_wall.xpm
+SO maps/textures/so_texture.xpm
 
 F   69, 222, 199
 
-EA ./textures/east_wall.xpm
+EA maps/textures/ea_texture.xpm
 
 
 
@@ -39,3 +39,4 @@ C 235, 198, 52
 100000000000000000000001
 100000000000000000000001
 111111111111111111111111
+

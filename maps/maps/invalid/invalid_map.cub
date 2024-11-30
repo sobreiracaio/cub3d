@@ -1,12 +1,12 @@
 
 
 
-WE ./textures/wall1.xpm
+WE maps/textures/we_texture.xpm
 C 140,125,100
 F   125,200,100
 
-NO               ./textures/wall1.xpm
-EA ./textures/wall1.xpm
+NO               maps/textures/no_texture.xpm
+EA maps/textures/ea_texture.xpm
 
 
 
@@ -23,4 +23,6 @@ EA ./textures/wall1.xpm
 1N000001001        1111
 11111111111
 
-SO 	 ./textures/wall1.xpm
+SO 	 maps/textures/so_texture.xpm
+
+

@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 17:42:26 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/30 14:37:08 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:43:50 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ static int	get_dir_and_fov(t_game *game, int player_count, int garbage)
 	i = 0;
 	while (game->map->map_matrix[i])
 	{
+		
 		j = 0;
 		while (game->map->map_matrix[i][j])
 		{
 			c = game->map->map_matrix[i][j];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
-				game->player->pos.y = i;
-				game->player->pos.x = j;
+				game->player->pos.y = i + (2 * BUFFER_DISTANCE);
+				game->player->pos.x = j + (2 * BUFFER_DISTANCE);
 				game->player->fov = c;
 				game->map->map_matrix[i][j] = '0';
 				player_count++;

@@ -1,11 +1,11 @@
 
-NO ./textures/north_wall.xpm
+NO maps/textures/no_texture.xpm
 
-SO ./textures/south_wall.xpm
+SO maps/textures/so_texture.xpm
 
-WE ./textures/west_wall.xpm
+WE maps/textures/we_texture.xpm
 
-EA ./textures/east_wall.xpm
+EA maps/textures/ea_texture.xpm
 
 F 0,120,0
 C 0,0,120 ciao
@@ -18,3 +18,4 @@ C 0,0,120 ciao
 1111100000010000000W00000000000000001
 1011000000000000000000000000000000001
 1111111111111111111111111111111111111
+

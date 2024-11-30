@@ -1,21 +1,21 @@
 
 F255, 200, 0
 
-C 255,30,30
 
 
 
 
-    NO    maps/textures/no_texture.xpm
-SO   maps/textures/so_texture.xpm
-
-
-
-  WE maps/textures/we_texture.xpm
-
-
-
+NO maps/textures/no_texture.xpm
+SO maps/textures/so_texture.xpm
+WE maps/textures/we_texture.xpm
 EA maps/textures/ea_texture.xpm
+
+
+C 255,30,   30
+
+
+
+
 
          1111111111111111111111111
          10000000000000000000000011111

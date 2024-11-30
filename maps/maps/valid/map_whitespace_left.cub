@@ -1,7 +1,7 @@
-NO ./textures/north_wall.xpm
-SO ./textures/south_wall.xpm
-WE ./textures/west_wall.xpm
-EA ./textures/east_wall.xpm
+NO maps/textures/no_texture.xpm
+SO maps/textures/so_texture.xpm
+WE maps/textures/we_texture.xpm
+EA maps/textures/ea_texture.xpm
 
 F 220,100,0
 C 225,30,0
@@ -15,5 +15,6 @@ C 225,30,0
   100000111111111111001111001
   1000000000000000000N0000001
   111111111111110000000000011
-             10000000000001
+             100000000000011
              11111111111111
+

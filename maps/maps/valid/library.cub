@@ -1,10 +1,10 @@
 F 139,99,58
 C 171,154,137
 
-NO ./maps/textures/north_wall.xpm
-SO ./maps/textures/south_wall.xpm
-WE ./maps/textures/west_wall.xpm
-EA ./maps/textures/east_wall.xpm
+NO maps/textures/no_texture.xpm
+SO maps/textures/so_texture.xpm
+WE maps/textures/we_texture.xpm
+EA maps/textures/ea_texture.xpm
 
 1111111111111111111
 1001001001001001001
@@ -16,4 +16,5 @@ EA ./maps/textures/east_wall.xpm
 1111000000000001111
 1000000101010000001
 1111111111111111111
+
 

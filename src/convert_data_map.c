@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 22:10:46 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:29:35 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	are_color_valid(t_game *game)
 
 	i = 0;
 	color = game->map->ceiling;
-	while ((color[i]>= 0) && i < 3)
+	while (i < 3)
 	{
 		if (color[i] > 255 || color[i] < 0)
 			return (ft_print_err("Error: Ceiling color index is not valid."));
@@ -37,7 +37,7 @@ static int	are_color_valid(t_game *game)
 	}
 	i = 0;
 	color2 = game->map->floor;
-	while ((color2[i]>= 0) && i < 3) 
+	while (i < 3) 
 	{
 		if (color2[i] > 255 || color2[i] < 0)
 			return (ft_print_err("Error: Ceiling color index is not valid."));
@@ -57,7 +57,7 @@ static int	read_fc_color(t_game *game, char *line)
 	if (!ft_strncmp(trimmed, "F", 1))
 	{
 		temp = ft_split(trimmed + 1, ',');
-		if(arr_len(temp) < 3)
+		if(arr_len(temp) != 3)
 		{
 			free_arr(temp);
 			free(trimmed);
@@ -72,7 +72,7 @@ static int	read_fc_color(t_game *game, char *line)
 	if (!ft_strncmp(trimmed, "C", 1))
 	{
 		temp = ft_split(trimmed + 1, ',');
-		if(arr_len(temp) < 3)
+		if(arr_len(temp) != 3)
 		{
 			free_arr(temp);
 			free(trimmed);
@@ -116,7 +116,7 @@ static int check_duplicates(char **map_arr)
 		i++;
 	}
 	if (path_counter != 4 || color_counter != 2)
-		return (ft_print_err("Error: Missing or extra paths or colors detected."));
+		return (ft_print_err("Error: Wrong data or map is empty."));
 	
 }
 int	convert_data_map(t_game *game, char *temp_raw_map)
