@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/30 16:29:35 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:21:14 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int check_duplicates(char **map_arr)
 	path_counter = 0;
 	color_counter = 0;
 	i = 0;
-	while(map_arr[i])
+	while(map_arr[i])// && i < 6)
 	{
 		trimmed = ft_strtrim(map_arr[i], " ");
 		if (!ft_strncmp(trimmed,"NO", 2))
@@ -116,7 +116,7 @@ static int check_duplicates(char **map_arr)
 		i++;
 	}
 	if (path_counter != 4 || color_counter != 2)
-		return (ft_print_err("Error: Wrong data or map is empty."));
+		return (ft_print_err("Error: Corrupted data."));
 	
 }
 int	convert_data_map(t_game *game, char *temp_raw_map)

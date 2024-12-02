@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:24:49 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 20:18:34 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:25:56 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_open(t_game *game, char *path_to_tex, char *direction)
 	if (strncmp(temp + size - 4, ".xpm", 4))
 	{
 		free(temp);
-		return (ft_print_err("Error: Format is not valid."));
+		return (ft_print_err("Error: Texture format is not valid."));
 	}
 	fd = open(temp, O_RDONLY);
 	if (fd == -1)
