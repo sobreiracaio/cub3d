@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/28 21:40:42 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/03 20:52:44 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,11 @@ int		check_tex_path(t_game *game, char **path);
 int		parse_map_matrix(char** map_line, t_game *game);
 int		flood_fill(char **map_line, t_game *game);
 char	getchr(const char *s, int c);
-void		free_structs(t_game *game);
+void	free_structs(t_game *game);
 void	free_arr(char **arr);
 int		ft_print_err(char *err);
 void	player_direction(t_game *game);
 void	free_arr(char **arr);
 int		arr_len(char **arr);
+int	check_alpha(char *line);
 #endif

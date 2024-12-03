@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-for file in maps/maps/invalid/*; do
+for file in maps/maps/others/*; do
     echo "Parsing map: $file..."
     echo "---------------------------"
     

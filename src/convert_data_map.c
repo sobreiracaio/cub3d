@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/02 17:21:14 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/03 21:04:09 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ static int	read_fc_color(t_game *game, char *line)
 	char	**temp;
 	char	*trimmed;
 	int		i;
+	int		has_alpha;
 	
 	trimmed = ft_strtrim(line, " ");
+	has_alpha = 0;
+	if (!ft_strncmp(trimmed, "F", 1) || !ft_strncmp(trimmed, "C", 1))
+		has_alpha = check_alpha(trimmed);
 	i = -1;
 	if (!ft_strncmp(trimmed, "F", 1))
 	{
@@ -64,7 +68,12 @@ static int	read_fc_color(t_game *game, char *line)
 			return (ft_print_err("Error: Floor has wrong color index number."));
 		}
 		while (temp[++i])
-			game->map->floor[i] = ft_atoi(temp[i]);
+		{
+			if(has_alpha)
+				game->map->floor[i] = -1;
+			else
+				game->map->floor[i] = ft_atoi(temp[i]);
+		}
 		free_arr(temp);
 		game->map->f_color = rgb_to_hex(game->map->floor);
 	}
@@ -79,7 +88,12 @@ static int	read_fc_color(t_game *game, char *line)
 			return (ft_print_err("Error: Ceiling has wrong color index number."));
 		}
 		while (temp[++i])
-			game->map->ceiling[i] = ft_atoi(temp[i]);
+		{
+			if(has_alpha)
+				game->map->ceiling[i] = -1;
+			else
+				game->map->ceiling[i] = ft_atoi(temp[i]);
+		}
 		free_arr(temp);
 		game->map->c_color = rgb_to_hex(game->map->ceiling);
 	}
@@ -97,7 +111,7 @@ static int check_duplicates(char **map_arr)
 	path_counter = 0;
 	color_counter = 0;
 	i = 0;
-	while(map_arr[i])// && i < 6)
+	while(map_arr[i])
 	{
 		trimmed = ft_strtrim(map_arr[i], " ");
 		if (!ft_strncmp(trimmed,"NO", 2))
@@ -117,7 +131,7 @@ static int check_duplicates(char **map_arr)
 	}
 	if (path_counter != 4 || color_counter != 2)
 		return (ft_print_err("Error: Corrupted data."));
-	
+	return (0);
 }
 int	convert_data_map(t_game *game, char *temp_raw_map)
 {
