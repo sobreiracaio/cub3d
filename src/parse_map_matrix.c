@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 17:42:26 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/11/30 15:43:50 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:34:51 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ static int	check_numbers(t_game *game, int player_count, int garbage)
 	return (0);
 }
 
-static int	get_dir_and_fov(t_game *game, int player_count, int garbage)
+static int	get_dir_and_fov(t_game *game, int player_count, int garbage, int i)
 {
-	int		i;
 	int		j;
 	char	c;
 
-	i = 0;
 	while (game->map->map_matrix[i])
 	{
-		
 		j = 0;
 		while (game->map->map_matrix[i][j])
 		{
@@ -65,5 +62,5 @@ int	parse_map_matrix(char **map_line, t_game *game)
 	garbage = 0;
 	if (flood_fill(map_line + 6, game) != 0)
 		return (1);
-	return (get_dir_and_fov(game, player_count, garbage));
+	return (get_dir_and_fov(game, player_count, garbage, i));
 }

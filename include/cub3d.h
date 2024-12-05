@@ -6,7 +6,7 @@
 /*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/03 20:52:44 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:54:34 by crocha-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 # define LEFT 65361
 # define RIGHT 65363
 
-
 typedef struct s_coord
 {
 	double	x;
@@ -72,7 +71,7 @@ typedef struct s_player
 	char	fov; // field of view
 	t_coord	dir;
 	t_plane	plane;
-	t_coord movement;
+	t_coord	movement;
 	double	move_speed;
 	double	rot_speed;
 	int		img_index;
@@ -80,9 +79,9 @@ typedef struct s_player
 	double	hit_x;
 	int		pitch;
 	t_coord	pos;
-	double		angle;
-	int			int_pos_x;
-	int			int_pos_y;
+	double	angle;
+	int		int_pos_x;
+	int		int_pos_y;
 }	t_player;
 
 typedef struct s_map
@@ -92,7 +91,7 @@ typedef struct s_map
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	int		floor[3];   //NAO UTILIZAR
+	int		floor[3]; //NAO UTILIZAR
 	int		ceiling[3]; //NAO UTILIZAR
 	int		f_color;
 	int		c_color;
@@ -147,7 +146,7 @@ typedef struct s_game
 int		check_and_parse(t_game *game, char **path);
 int		convert_data_map(t_game *game, char *temp_raw_map);
 int		check_tex_path(t_game *game, char **path);
-int		parse_map_matrix(char** map_line, t_game *game);
+int		parse_map_matrix(char **map_line, t_game *game);
 int		flood_fill(char **map_line, t_game *game);
 char	getchr(const char *s, int c);
 void	free_structs(t_game *game);
@@ -156,5 +155,6 @@ int		ft_print_err(char *err);
 void	player_direction(t_game *game);
 void	free_arr(char **arr);
 int		arr_len(char **arr);
-int	check_alpha(char *line);
+int		check_alpha(char *line);
+int		rgb_to_hex(int *rgb);
 #endif
