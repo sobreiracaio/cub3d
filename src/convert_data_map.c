@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_data_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:52:08 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/05 17:47:41 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/06 04:40:29 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	read_fc_color(t_game *game, char *line)
 {
 	char	**temp;
 	char	*trimmed;
-	int		i;
 
 	trimmed = ft_strtrim(line, " ");
 	temp = ft_split(trimmed + 1, ',');

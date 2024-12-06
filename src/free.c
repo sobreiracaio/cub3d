@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:35:48 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/10/23 16:24:23 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/06 06:19:48 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	free_structs(t_game *game)
 		free(game->map->ea_texture);
 	free(game->map);
 	free(game->player);
+	free(game->texture);
 }

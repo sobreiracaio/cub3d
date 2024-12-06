@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:52:22 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/05 17:50:12 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/06 06:20:00 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,27 @@ int	rgb_to_hex(int *rgb)
 	color = (rgb[0] << 16 | rgb[1] << 8
 			| rgb[2]);
 	return (color);
+}
+
+void	ft_perror(char *msg, t_game *game)
+{
+	int	i;
+
+	i = -1;
+	printf("%s", msg);
+	if (!game)
+		exit (EXIT_FAILURE);
+	while (++i < 4)
+	{
+		if (game->render[i].image.img_ptr)
+			mlx_destroy_image(game->mlx, game->render[i].image.img_ptr);
+	}
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free (game->mlx);
+	}
+	if (game->map->map_matrix)
+		free_arr(game->map->map_matrix);
+	exit (EXIT_SUCCESS);
 }

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crocha-s <crocha-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/05 17:54:34 by crocha-s         ###   ########.fr       */
+/*   Updated: 2024/12/06 07:04:13 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/mlx/mlx.h"
-# include "../lib/mlx/mlx_int.h"
-# include "../lib/libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
+# include "../libft/libft.h"
 # include <assert.h>
 # include <stdbool.h>
 # include <math.h>
@@ -27,9 +27,9 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define SPRITE_SIZE 64
-# define SPEED 0.025
-# define ROTATION_SPEED 20
-# define BUFFER_DISTANCE 0.1
+# define SPEED 0.09f
+# define ROTATION_SPEED 3
+# define BUFFER_DISTANCE 0.06f
 
 # define PI 3.14159265358
 
@@ -40,6 +40,13 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
+
+# define NO 0
+# define SO 1
+# define EA 2
+# define WE 3
+# define F 	4
+# define C 	5
 
 typedef struct s_coord
 {
@@ -68,20 +75,18 @@ typedef struct s_plane
 
 typedef struct s_player
 {
-	char	fov; // field of view
+	char	fov;
 	t_coord	dir;
 	t_plane	plane;
 	t_coord	movement;
+	t_coord	pos;
 	double	move_speed;
 	double	rot_speed;
 	int		img_index;
 	double	hit_dist;
 	double	hit_x;
 	int		pitch;
-	t_coord	pos;
 	double	angle;
-	int		int_pos_x;
-	int		int_pos_y;
 }	t_player;
 
 typedef struct s_map
@@ -91,8 +96,8 @@ typedef struct s_map
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	int		floor[3]; //NAO UTILIZAR
-	int		ceiling[3]; //NAO UTILIZAR
+	int		floor[3];
+	int		ceiling[3];
 	int		f_color;
 	int		c_color;
 	int		n_lines;
@@ -131,7 +136,8 @@ typedef struct s_rays
 	t_coord		direction;
 	t_coord		delta;
 	t_coord		intersection;
-	t_coord		map_mov;
+	t_coord		map_mov; //step
+	t_coord		map;
 	bool		hit_vertical;
 	double		perp_wall_dist;
 }	t_rays;
@@ -141,6 +147,14 @@ typedef struct s_game
 	char		*file;
 	t_map		*map;
 	t_player	*player;
+	void		*mlx;
+	void		*win;
+	t_render	render[4];
+	int			key;
+	t_render	*texture;
+	t_image		img;
+	t_img_info	img_info;
+	t_rays		ray;
 }	t_game;
 
 int		check_and_parse(t_game *game, char **path);
@@ -152,9 +166,22 @@ char	getchr(const char *s, int c);
 void	free_structs(t_game *game);
 void	free_arr(char **arr);
 int		ft_print_err(char *err);
+void	get_img_address(t_image *img);
+int		make_game(t_game *cub3d);
+void	movements(t_game *game);
+void	generate_image(t_game *cub3d);
+void	texture_calc(t_game *game);
+void	ft_putcolor(t_game *game, int i, char flag);
+void	ft_textures(t_game *game, int i);
 void	player_direction(t_game *game);
 void	free_arr(char **arr);
+void	raycast(t_game *game);
+void	ft_perror(char *msg, t_game *game);
+int		end_game(t_game *game);
+int		ft_keypress(int keycode, t_game *game);
+int		ft_keyrelease(int keycode, t_game *game);
 int		arr_len(char **arr);
 int		check_alpha(char *line);
 int		rgb_to_hex(int *rgb);
+
 #endif
