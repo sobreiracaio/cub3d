@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:58:16 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/06 07:04:13 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:43:57 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define SPRITE_SIZE 64
-# define SPEED 0.09f
-# define ROTATION_SPEED 3
-# define BUFFER_DISTANCE 0.06f
+# define SPEED 0.02
+# define ROTATION_SPEED 0.7
+# define BUFFER_DISTANCE 0.02
 
 # define PI 3.14159265358
 
@@ -173,7 +173,6 @@ void	generate_image(t_game *cub3d);
 void	texture_calc(t_game *game);
 void	ft_putcolor(t_game *game, int i, char flag);
 void	ft_textures(t_game *game, int i);
-void	player_direction(t_game *game);
 void	free_arr(char **arr);
 void	raycast(t_game *game);
 void	ft_perror(char *msg, t_game *game);

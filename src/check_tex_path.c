@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:24:49 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/06 04:30:58 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:51:48 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	check_open(t_game *game, char *path_to_tex, char *direction)
 		return (1);
 	}
 	set_textures(game, temp, direction);
+	close(fd);
 	return (0);
 }
 

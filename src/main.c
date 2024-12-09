@@ -6,7 +6,7 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 17:23:23 by crocha-s          #+#    #+#             */
-/*   Updated: 2024/12/06 06:27:53 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:27:56 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (ft_print_err("Invalid arguments: try ./cub3d <path to map>."));
+		return (ft_print_err("Invalid arguments: try ./cub3D <path to map>."));
 	argv++;
 	init_structs(&game);
 	if (check_and_parse(&game, argv) == 0)

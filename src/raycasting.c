@@ -6,13 +6,12 @@
 /*   By: lumarque <lumarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:20:18 by lumarque          #+#    #+#             */
-/*   Updated: 2024/12/06 05:42:59 by lumarque         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:35:41 by lumarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-//Set direction and calculate distance intersection
 void	ray_intersections(t_game *game)
 {
 	if (game->ray.direction.x < 0)
@@ -41,7 +40,6 @@ void	ray_intersections(t_game *game)
 	}
 }
 
-//Calculate multiplier of pixel plane, and set map pos and delta distance.
 void	ray_setup(t_game *game, int pixel)
 {
 	double	multiplier;
