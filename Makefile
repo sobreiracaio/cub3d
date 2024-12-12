@@ -91,6 +91,7 @@ fclean: clean
 
 re: fclean all
 
-leaks: valgrind --leak-check=full --show-leak-kinds=all --track-origin=yes ./cub3D maps/maps/directions/e.cub
+leaks: 
+	valgrind --leak-check=full --show-leak-kinds=all --track-origin=yes ./cub3D maps/maps/directions/e.cub
 
 .PHONY: all clean fclean re leaks
